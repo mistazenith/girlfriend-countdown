@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #fff0f5;
+  --color-foreground: #4a1a2e;
+  --font-heading: var(--font-dancing-script);
+  --font-body: var(--font-quicksand);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Base ────────────────────────────────────── */
+body {
+  background: linear-gradient(170deg, #fff0f5 0%, #ffe4ec 40%, #ffd6e0 100%);
+  color: var(--color-foreground);
+  font-family: var(--font-body), sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Countdown number pulse ──────────────────── */
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+.countdown-num {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* ── Floating hearts ─────────────────────────── */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(45deg) scale(0.4);
+    opacity: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -5%;
+  font-size: 1.4rem;
+  animation: float-up linear infinite;
+  opacity: 0;
+  user-select: none;
+}
+
+/* Generate 14 hearts with staggered positions and durations */
+.floating-heart:nth-child(1)  { left:  3%; animation-duration: 11s; animation-delay: 0s;   font-size: 1.1rem; }
+.floating-heart:nth-child(2)  { left: 11%; animation-duration: 13s; animation-delay: 1.5s; font-size: 0.9rem; }
+.floating-heart:nth-child(3)  { left: 20%; animation-duration: 10s; animation-delay: 3s;   font-size: 1.5rem; }
+.floating-heart:nth-child(4)  { left: 28%; animation-duration: 14s; animation-delay: 0.5s; font-size: 1rem;   }
+.floating-heart:nth-child(5)  { left: 37%; animation-duration: 12s; animation-delay: 4s;   font-size: 1.3rem; }
+.floating-heart:nth-child(6)  { left: 45%; animation-duration: 15s; animation-delay: 2s;   font-size: 0.8rem; }
+.floating-heart:nth-child(7)  { left: 54%; animation-duration: 11s; animation-delay: 5s;   font-size: 1.4rem; }
+.floating-heart:nth-child(8)  { left: 62%; animation-duration: 13s; animation-delay: 1s;   font-size: 1rem;   }
+.floating-heart:nth-child(9)  { left: 70%; animation-duration: 10s; animation-delay: 3.5s; font-size: 1.2rem; }
+.floating-heart:nth-child(10) { left: 78%; animation-duration: 14s; animation-delay: 0s;   font-size: 0.9rem; }
+.floating-heart:nth-child(11) { left: 85%; animation-duration: 12s; animation-delay: 2.5s; font-size: 1.5rem; }
+.floating-heart:nth-child(12) { left: 92%; animation-duration: 15s; animation-delay: 4.5s; font-size: 1.1rem; }
+.floating-heart:nth-child(13) { left:  7%; animation-duration: 13s; animation-delay: 6s;   font-size: 1rem;   }
+.floating-heart:nth-child(14) { left: 50%; animation-duration: 11s; animation-delay: 7s;   font-size: 1.3rem; }
+
+/* ── NYC skyline ─────────────────────────────── */
+.skyline-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 1;
+  line-height: 0;
+}
+.skyline-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Shimmer on route text ───────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.route-shimmer {
+  background: linear-gradient(90deg, #b76e79 0%, #e8a0b4 40%, #f5c6d0 50%, #e8a0b4 60%, #b76e79 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Plane bobbing ───────────────────────────── */
+@keyframes bob {
+  0%, 100% { transform: translateY(0px) rotate(-5deg); }
+  50%      { transform: translateY(-4px) rotate(-5deg); }
+}
+.plane-bob {
+  display: inline-block;
+  animation: bob 2.5s ease-in-out infinite;
 }
