@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-/* ── Target: May 3, 2026 midnight IST (UTC+5:30) ─────────── */
-const TARGET = new Date("2026-05-03T00:00:00+05:30").getTime();
+/* ── Target: April 1, 2026 midnight EDT (UTC-4) ──────────── */
+const TARGET = new Date("2026-04-01T00:00:00-04:00").getTime();
 
 interface TimeLeft {
   days: number;
@@ -215,7 +215,7 @@ export default function Home() {
             className="route-shimmer text-xl sm:text-2xl font-bold tracking-wide"
             style={{ fontFamily: "var(--font-quicksand), sans-serif" }}
           >
-            New York
+            Korea
           </span>
           <span className="plane-bob text-xl sm:text-2xl" role="img" aria-label="plane with heart trail">
             &#9992;&#65039;&#xFE0F;&#x1F49E;
@@ -224,7 +224,7 @@ export default function Home() {
             className="route-shimmer text-xl sm:text-2xl font-bold tracking-wide"
             style={{ fontFamily: "var(--font-quicksand), sans-serif" }}
           >
-            Delhi
+            New York
           </span>
         </div>
 
@@ -236,7 +236,7 @@ export default function Home() {
             color: "#c9707d",
           }}
         >
-          On or before May 3, 2026
+          April 1, 2026
         </p>
 
         {/* ── Footer love note ── */}
